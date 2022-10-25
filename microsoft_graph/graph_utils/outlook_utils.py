@@ -3,6 +3,7 @@ import logging
 import os
 from typing import List
 import requests
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -98,6 +99,10 @@ def send_mail_with_attatchments(graph_app, attatchment_Filenames, subject, body,
         
         if (responseJsonString['id']):
             for attatchemnt in range(len(attatchment_Filenames)):
+
+                # Getting the file names
+                file_name = Path(attatchment_Filenames[attatchemnt]).name
+
                 file_size_and_chunks = calculate_file_size_and_necessary_chunks(attatchment_Filenames[attatchemnt], CHUNK_SIZE)
                 graph_data = requests.post(
                     f"{graph_app.endpoint}/{sender}/messages/{responseJsonString['id']}/attachments/createUploadSession",
@@ -105,7 +110,7 @@ def send_mail_with_attatchments(graph_app, attatchment_Filenames, subject, body,
                     json={
                         "AttachmentItem": {
                             "attachmentType": "file",
-                            "name": attatchment_Filenames[attatchemnt],
+                            "name": file_name,
                             "size": file_size_and_chunks[0]
                         }
                     }
