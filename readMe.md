@@ -1,5 +1,6 @@
 #   Welcome to the graph_api tutorial code of the [whatever piques my interest youtube channel](https://www.youtube.com/channel/UCgoux3jJpq1EDknYbkzfvuw)
 
+## If you find this repository useful, please give it a star ⭐.
 
 This tutorial has the objective of helping users connect to the Microsoft graph API email activities, without using user sign in (application daemon), and restricting access to certain mailboxes.
 
